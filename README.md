@@ -1,17 +1,56 @@
-# %make / %vapor
+# `%chain-watcher`
 
-> **Disclaimer**: This project is no longer maintained. Feel free to fork and
-improve it if you'd like - it is [vaporware](LICENSE) after all.
->
-> Future development of this project will be continued by the primary author, [ryjm](https://github.com/ryjm). Special thanks to [rabsef-bicrym](https://github.com/rabsef-bicrym) for pioneering the initial product and [xiphiness](https://github.com/xiphiness) for important contributions.
+A soft fork of [Urbit] core's `%eth-watcher` agent for more general use cases.
 
-%make is a suite of agents that use a shrubbery-like strategy to watch Ethereum addresses and potentially take action in Urbit as a result of transactions. An example use case (Vaporware's): When an NFT is minted, distribute an app to the new owner.
+Thanks to @ryjm (~littel-wolfur) and @rabsef-bicrym (~rabsef-bicrym) for their
+work on [`%make`](https://github.com/deathtothecorporation/make), the starting
+point for this project.
 
-## nix
+## Build/Develop
 
-- clean-deploy: removes the pier desk entirely and resyncs. also commits and revives the project.
-- deploy: cleans build dir, syncs deps, copies to ship. does not automatically commit.
+Make sure the following dependencies are installed on your development machine:
 
-## no nix
+- [`GNU Make`](https://www.gnu.org/software/make/)
+- [`durploy`](https://github.com/sidnym-ladrut/durploy)
+- [`peru`](https://github.com/buildinspace/peru?tab=readme-ov-file#installation)
 
-- run `make clean && make && make install`
+All of the following commands assume that the current working directory is this
+repository's base directory. Also, before running any development commands, you
+first need a running Urbit ship. Deploy one on your local machine with:
+
+```bash
+durploy ship zod
+```
+
+### Development Workflows
+
+In order to continuously test back-end code changes as they're made, run:
+
+```bash
+durploy desk -w zod fund ./out/desk/
+```
+
+### Deployment Workflows
+
+To generate a new full desk from the existing base desk, run the following
+command:
+
+```bash
+make desk
+```
+
+To deploy a new desk onto your development ship, run:
+
+```bash
+make ship-desk IN_SHIP=zod
+```
+
+To perform a versioned release:
+
+```bash
+make release IN_SHIP=zod IN_RVER=X.Y.Z
+```
+
+
+[urbit]: https://urbit.org
+[durploy]: https://github.com/sidnym-ladrut/durploy

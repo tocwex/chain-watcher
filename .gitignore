@@ -1,0 +1,16 @@
+# OS Files #
+.DS_Store
+
+# Env Files #
+*.local
+.urb
+
+# Generated Files #
+.peru/
+out/desk/
+out/exec/
+
+# Session Files #
+*.vim
+*.swp
+*.swo

@@ -82,10 +82,11 @@
   ^-  form:m
   =/  zoom-margin=number:block   (fall confirms.pup 15)
   =/  zoom-step=number:block    100.000
+  =/  pup-id=@ux  (swp 3 (end [3 4] (swp 3 -.contracts.pup)))
   ?:  (lth latest-number (add number.pup zoom-margin))
-     ::  ~&  >>  "[{<`@ux`(swp 3 (end [3 4] (swp 3 -.contracts.pup)))>}] waiting - latest: {<latest-number>} number: {<number.pup>}  up-to: {<up-to>}"
+    ::  ~&  >>  "[{<pup-id>}] waiting -- latest:{<latest-number>}|number:{<number.pup>}|up-to:{<up-to>}"
     (pure:m pup)
-   ::  ~&  >>  "[{<`@ux`(swp 3 (end [3 4] (swp 3 -.contracts.pup)))>}] ready - latest: {<latest-number>} number: {<number.pup>}  up-to: {<up-to>}"
+  ::  ~&  >>  "[{<pup-id>}] ready -- latest:{<latest-number>}|number:{<number.pup>}|up-to:{<up-to>}"
   =/  up-to-number=number:block
     ;:  min
       (add 10.000.000 number.pup)
@@ -106,7 +107,7 @@
       number.pup
       to-number
     ==
-  ::  ~&  >>>  loglist+loglist
+  ::  ~&  >>>  "[{<pup-id>}] [{<number.pup>} - {<to-number>}] -- found {<(lent loglist)>} logs"
   =?  pending-logs.pup  ?=(^ loglist)
     (~(put by pending-logs.pup) to-number loglist)
   loop(number.pup +(to-number))

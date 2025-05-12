@@ -88,10 +88,8 @@
     ::  fully restart the watchdog if it doesn't exist yet,
     ::  or if result-altering parts of the config changed.
     =/  restart=?
-      ?|  !(~(has by dogs.state) path.poke)
-          ?!  .=  ->+>+:(~(got by dogs.state) path.poke)
-                   +>+>.config.poke
-      ==
+      ?~  c=(~(get by dogs.state) path.poke)  &
+      !=([from to contracts topics]:u.c [from to contracts topics]:config.poke)
     ::
     =/  already  (~(has by dogs.state) path.poke)
     ~?  &(already restart)

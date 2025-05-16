@@ -81,7 +81,7 @@
   =/  m  (strand:strandio ,watchpup)
   ^-  form:m
   =/  zoom-margin=number:block   (fall confirms.pup 15)
-  =/  zoom-step=number:block    100.000
+  =/  zoom-step=number:block    8.150  ::  for chainnodes.org
   =/  pup-id=@ux  (swp 3 (end [3 4] (swp 3 -.contracts.pup)))
   ?:  (lth latest-number (add number.pup zoom-margin))
     ::  ~&  >>  "[{<pup-id>}] waiting -- latest:{<latest-number>}|number:{<number.pup>}|up-to:{<up-to>}"

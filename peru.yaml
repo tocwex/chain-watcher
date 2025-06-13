@@ -35,6 +35,7 @@ git module base:
     - main/sur/json
     - main/sur/spider.hoon
     - main/sur/verb.hoon
+  rev: 410k
 
 git module arvo:
   url: https://github.com/urbit/urbit

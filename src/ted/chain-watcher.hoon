@@ -81,7 +81,7 @@
   =/  m  (strand:strandio ,watchpup)
   ^-  form:m
   =/  zoom-margin=number:block   (fall confirms.pup 15)
-  =/  zoom-step=number:block    8.150  ::  for chainnodes.org
+  =/  zoom-step=number:block    1.000.000  ::  infura supports wide ranges
   =/  pup-id=@ux  (swp 3 (end [3 4] (swp 3 -.contracts.pup)))
   ?:  (lth latest-number (add number.pup zoom-margin))
     ::  ~&  >>  "[{<pup-id>}] waiting -- latest:{<latest-number>}|number:{<number.pup>}|up-to:{<up-to>}"
@@ -99,6 +99,9 @@
     (pure:m pup(blocks ~))
   =/  to-number=number:block
       (min up-to-number (add number.pup zoom-step))
+  ;<  eny=@uvJ  bind:m  get-entropy:strandio
+  =/  nap=@dr   (mul ~s1 (~(rad og eny) 5))  ::  stagger multi-thread calls
+  ;<  ~  bind:m  (sleep:strandio nap)
   ;<  =loglist  bind:m  ::  oldest first
     %:  get-logs-by-range:ethio
       url.pup
@@ -110,6 +113,7 @@
   ::  ~&  >>>  "[{<pup-id>}] [{<number.pup>} - {<to-number>}] -- found {<(lent loglist)>} logs"
   =?  pending-logs.pup  ?=(^ loglist)
     (~(put by pending-logs.pup) to-number loglist)
+  ;<  ~  bind:m  (sleep:strandio ~s1)  ::  wait for endpoint throttle
   loop(number.pup +(to-number))
 ::  Fetch inputs for a list of logs
 ::

@@ -35,7 +35,7 @@ git module base:
     - main/sur/json
     - main/sur/spider.hoon
     - main/sur/verb.hoon
-  rev: 410k
+  rev: 408k-rc2
 
 git module arvo:
   url: https://github.com/urbit/urbit
@@ -48,4 +48,4 @@ git module arvo:
     - main/lib/naive.hoon
     - main/lib/naive-transactions.hoon
     - main/lib/tiny.hoon
-  rev: 410k
+  rev: 408k-rc2
